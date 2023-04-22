@@ -16,12 +16,23 @@
 % The Current Maintainer of this work is Feng Kaiyu.
 
 \begin{abstract}
-  本文......。
-  \textcolor{blue}{（摘要是一篇具有独立性和完整性的短文，应概括而扼要地反映出本论文的主要内容。包括研究目的、研究方法、研究结果和结论等，特别要突出研究结果和结论。中文摘要力求语言精炼准确，博士学位论文建议1000\textasciitilde{}1200字，硕士学位论文摘要建议500\textasciitilde{}800字。摘要中不可出现参考文献、图、表、化学结构式、非公知公用的符号和术语。英文摘要与中文摘要的内容应完全一致，在语法、用词上应准确无误，语言简练通顺。留学生的英文版博士学位论文中应有不少于3000字的“详细中文摘要”。）}
+  工业缺陷检测智能化是实现中国制造2025的重要内容之一，其中很多工业产品结构复杂、质检难度大，而目前缺陷检测算法主要是基于二维RGB图像，其在纹理、颜色等缺陷上表现优异，但在面对非平整表面这类复杂结构缺陷上仍有较大提升空间。此外，工业缺陷检测还存在缺陷未知且样本难以获取、企业对样本数据保密等不利于采用有监督深度学习进行缺陷检测的现实情况。因此，针对这些工业实际背景，本文首先搭建了实验平台，然后面向非平整表面提出了基于三维点云和多模态数据的少样本且缺陷未知的检测算法，并在最后应用联邦学习实现了分布式缺陷检测。
+
+% 本文利用协作机器人挂载结构光相机搭建了硬件实验平台并开发了具有交互界面的自动数据采集应用，可以一键采集生成标准数据集，提高了后续缺陷检测算法的实验效率。
+
+针对二维图像在结构缺陷检测不佳的场景，本文提出了基于三维点云数据的缺陷检测算法PillarCore。本文方法通过引入面向点云数据的局部特征描述子RoPS作为缺陷检测骨干网络输入端的特征提取器，将应用于二维缺陷检测的无监督算法里的存储体机制迁移到三维数据，利用训练时维护正常样本特征存储体并在测试时比较测试样本特征与存储体的正常样本特征的距离来判断测试样本是否有缺陷，从而实现未知缺陷检测。自建数据集和公开数据集的实验均表明PillarCore在面向非平整表面的缺陷检测上性能有明显提升。
+
+针对纹理和结构缺陷共存的场景，本文提出了基于RGB-D的多模态缺陷检测算法HF-AST。该方法基于异构教师学生网络框架，假设仅在正常样本上训练的教师网络和学生网络在未知缺陷样本上有较大差异。本文通过将在大型数据集上预训练的网络作为RGB图像特征提取器，引入HOG算子作为深度特征提取器并在学生网络新增用于深度特征提取的卷积层，从而更好地融合深度信息。塑料件数据集的实验表明，相较于改进前的方法，HF-AST在多模态未知缺陷检测性能上有明显提升。
+
+针对企业对数据集的保密和对缺陷检测算法分布式可扩展的需求，本文提出了基于联邦学习和异构教师学生网络的分布式缺陷检测算法。通过结构相对简单的学生网络回归仅在本地数据集上训练更新的复杂教师网络，该方法降低模型参数上传服务器进行全局聚合优化的传输负载。多类数据集模拟分布多产线的实验结果表明本文的分布式方法具有良好的扩展性。
 \end{abstract}
 
 \begin{abstractEn}
-  In order to exploit.......
+  Industrial defect detection intelligence is one of the important contents to achieve China Manufacturing 2025. Many industrial products have complex structures and are difficult to inspect. Currently, defect detection algorithms are mainly based on 2D RGB images, which perform well in texture and color defects. However, there is still much room for improvement when facing complex structural defects on non-flat surfaces. In addition, industrial defect detection also faces challenges such as unknown defects, difficulty in obtaining samples, and enterprises' confidentiality of sample data, which make it difficult to use supervised deep learning for defect detection. Therefore, this thesis first builds an experimental platform and then proposes a few-shot and unknown defect detection algorithm based on 3D point clouds and multimodal data for non-flat surfaces. Finally, this thesis also applies federated learning to industrial defect detection algorithms to achieve distributed deployment.
 
-  Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.
+  To address the poor performance of 2D images in structural defect detection, this thesis proposes a defect detection algorithm based on three-dimensional point cloud data called PillarCore. This method introduces the RoPS local feature descriptor for point cloud data as the feature extractor at the input end of the defect detection backbone network. The storage mechanism used in unsupervised algorithms for 2D defect detection is migrated to 3D data. During training, the normal sample feature storage is maintained, and during testing, the distance between the test sample feature and the normal sample feature storage is compared to determine whether the test sample has a defect, achieving unknown defect detection. Experiments on self-built datasets and public datasets show that PillarCore has significantly improved performance in defect detection for non-flat surfaces.
+  
+  To address the coexistence of texture and structural defects, this thesis proposes a multimodal defect detection algorithm based on RGB-D called HF-AST. This method is based on a heterogeneous teacher-student network framework, assuming that the teacher network and student network trained only on normal samples have significant differences on unknown defect samples. This thesis uses a network pre-trained on a large dataset as an RGB image feature extractor, introduces the HOG operator as a depth feature extractor, and adds convolutional layers for depth feature extraction to the student network to better fuse depth information. Experiments on a plastic parts dataset show that compared to the improved method, HF-AST has significantly improved performance in multimodal unknown defect detection.
+  
+  To meet the needs of enterprises for data confidentiality and distributed scalable defect detection algorithms, this thesis proposes a distributed defect detection algorithm based on federated learning and a heterogeneous teacher-student network. By using a simple student network to update the complex teacher network only trained on local datasets, this method reduces the transmission load of model parameters uploaded to the server for global aggregation optimization. The experimental results of simulating multiple production lines with multiple datasets show that the distributed method proposed in this thesis has good scalability.
 \end{abstractEn}

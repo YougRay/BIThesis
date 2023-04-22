@@ -37,7 +37,7 @@
 \BITSetup{
   cover = {
     %% 使用以下参数来自定义封面日期
-    date = 2022年6月,
+    date = 2023年6月,
     autoWidthPadding = 0.25em,
   },
   info = {
@@ -46,27 +46,27 @@
     % 如需要换行，则用 “\\” 符号分割。
     classification = TQ028.1,
     UDC = 540,
-    title = 形状记忆聚氨酯的合成及其在织物中的应用,
+    title = 面向非平整表面的缺陷检测算法研究,
     % 如需覆盖竖排标题，请配置以下选项。
     % 下面的例子展示了如何在竖排标题中使用垂直或者旋转的英文。
     % verticalTitle = {形状记忆聚氨酯{L } {T } {X }的合成 \rotatebox[origin=c]{-90}{Feng Kaiyu} 及其在织物中的应用},
-    titleEn = Synthesisand Application on textile of the Shape Memory Polyurethane,
-    author = 张三,
-    major = 材料科学与工程,
-    school = 材料学院,
+    titleEn = Defect Detection Algorithm for Non-flat Surface,
+    author = 雷勇,
+    major = 控制科学与工程,
+    school = 自动化学院,
     degree = 工学硕士,
-    chairman = 王五教授,
-    defenseDate = 2022年6月1日,
-    supervisor = 李四教授,
-    authorEn = San Zhang,
-    schoolEn = Materials Science and Engineering,
+    chairman = 费庆高工,
+    defenseDate = 2023年6月1日,
+    supervisor = 马宏宾教授,
+    authorEn = Yong Lei,
+    schoolEn = Automation ,
     supervisorEn = Prof. Si Li,
     chairmanEn = Prof. Wang Wu,
     degreeEn = Master of Philosophy,
     majorEn = Materials Science and Engineering, 
-    defenseDateEn = {June, 12th, 2022},
-    keywords = {形状记忆；聚氨酯；织物；合成；应用\textcolor{blue}{（硕士一般选3～6个单词或专业术语，博士一般选3～8个单词或专业术语，且中英文关键词必须对应。）}},
-    keywordsEn = shape memory properties; polyurethane; textile; synthesis; application,
+    defenseDateEn = {June, 12th, 2023},
+    keywords = {缺陷检测；无监督；3D视觉；联邦学习},
+    keywordsEn = Defect Detection; Unsupervised; 3D Computer Vision;Federated Learning,
     % 必要时置于封面右上角，并按照国家规定进行标记。
     % classifiedLevel = 密级\BigStar 保密期限,
   },
@@ -113,6 +113,17 @@
 
 \usepackage{graphicx}
 
+\usepackage{subfigure}
+\usepackage{algpseudocode}
+\usepackage[linesnumbered, ruled, lined,boxed,commentsnumbered]{algorithm2e}[1]
+\usepackage{amssymb}
+\renewcommand{\algorithmcfname}{算法}  %<---细节与重点
+\SetKwInput{KwIn}{输入}  %<---细节与重点
+\SetKwInput{KwOut}{输出}  %<---细节与重点
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\usepackage{unicode-math}
+
 \begin{document}
 
 % 封面绘制
@@ -151,6 +162,9 @@
 % 请根据论文内容，按照顺序添加章节。
 \input{./chapters/chapter1.tex}
 \input{./chapters/chapter2.tex}
+\input{./chapters/chapter3.tex}
+\input{./chapters/chapter4.tex}
+\input{./chapters/chapter5.tex}
 
 \backmatter
 
@@ -160,7 +174,7 @@
 \input{./misc/2_reference.tex}
 
 % 附录
-\input{./misc/3_appendices.tex}
+% \input{./misc/3_appendices.tex}
 
 % 个人成果
 \input{./misc/4_pub.tex}
@@ -168,7 +182,7 @@
 % 致谢
 \input{./misc/5_acknowledgements.tex}
 % 个人简介（仅博士生需要此项）
-\input{./misc/6_resume.tex}
+% \input{./misc/6_resume.tex}
 
 % 加入目录
 \end{document}
